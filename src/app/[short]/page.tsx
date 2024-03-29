@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "Перенаправляем на ссылку...",
 };
 
-const Page = async ({ params }: { params: { short: string } }) => {
+const Short = async ({ params }: { params: { short: string } }) => {
   const link = await getLinkByShort(params.short);
 
   if (!link) {
@@ -26,4 +26,4 @@ const Page = async ({ params }: { params: { short: string } }) => {
   redirect(link.longUrl);
 };
 
-export default Page;
+export default Short;
