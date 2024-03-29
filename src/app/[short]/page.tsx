@@ -3,7 +3,9 @@ import { ILink } from "@/interfaces/link";
 import { Metadata } from "next";
 
 const getLinkByShort = async (short: string): Promise<ILink | null> => {
-  const res = await fetch(`http://localhost:3001/links/${short}`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/links/${short}`,
+  );
 
   if (!res.ok) return null;
 
