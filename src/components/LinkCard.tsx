@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
-import { TbCheck, TbCopy, TbTrash } from 'react-icons/tb'
+import { TbCheck, TbCopy, TbLoader2, TbTrash } from 'react-icons/tb'
 import { ILink } from '@/interfaces/link'
 import { useLinksStore } from '@/store/links'
 
 const LinkCard = ({ link }: { link: ILink }) => {
   const [copied, setCopied] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [removeLoading, setRemoveLoading] = useState(false)
 
   const { removeLink } = useLinksStore()
 
@@ -21,19 +21,18 @@ const LinkCard = ({ link }: { link: ILink }) => {
   }
 
   const handleRemove = async (id: string) => {
-    setLoading(true)
+    setRemoveLoading(true)
+
     await removeLink(id)
-    setLoading(false)
+
+    setRemoveLoading(false)
   }
 
   return (
     <div
       key={link.id}
       className={cn(
-        'flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 bg-zinc-800 p-5',
-        {
-          'blur pointer-events-none': loading
-        }
+        'flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 bg-zinc-800 p-5'
       )}
     >
       <div>
@@ -66,10 +65,16 @@ const LinkCard = ({ link }: { link: ILink }) => {
           )}
         </button>
         <button
-          className={cn('flex bg-zinc-700 p-2')}
+          className={cn('flex bg-zinc-700 p-2', {
+            'pointer-events-none': removeLoading
+          })}
           onClick={() => handleRemove(link.id)}
         >
-          <TbTrash className={cn('w-6 h-6')} />
+          {!removeLoading ? (
+            <TbTrash className={cn('w-6 h-6')} />
+          ) : (
+            <TbLoader2 className={cn('animate-spin w-6 h-6')} />
+          )}
         </button>
       </div>
     </div>
