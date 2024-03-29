@@ -7,9 +7,7 @@ import { useLinksStore } from "@/store/links";
 const Links = () => {
   const { links } = useLinksStore();
 
-  if (!links.length) {
-    return null;
-  }
+  if (!links.length) return null;
 
   return (
     <div className={cn("mt-20")}>

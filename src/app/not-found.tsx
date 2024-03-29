@@ -1,19 +1,19 @@
-import { cn } from "@/lib/utils";
-import { Metadata } from "next";
+import { cn } from '@/lib/utils'
+import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "404",
-};
+  title: '404'
+}
 
 const NotFound = () => {
   return (
     <div
-      className={cn("flex flex-col items-center justify-center min-h-screen")}
+      className={cn('flex flex-col items-center justify-center min-h-screen')}
     >
-      <h1 className={cn("text-4xl font-semibold")}>Страница не найдена ;(</h1>
-      <p className={cn("mt-5")}>Страница не найдена или удалена...</p>
+      <h1 className={cn('text-4xl font-semibold')}>Страница не найдена ;(</h1>
+      <p className={cn('mt-5')}>Страница не найдена или удалена...</p>
     </div>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

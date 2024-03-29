@@ -1,60 +1,79 @@
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { TbCheck, TbCopy, TbTrash } from "react-icons/tb";
-import { ILink } from "@/interfaces/link";
-import { useLinksStore } from "@/store/links";
+import { useState } from 'react'
+import { cn } from '@/lib/utils'
+import { TbCheck, TbCopy, TbTrash } from 'react-icons/tb'
+import { ILink } from '@/interfaces/link'
+import { useLinksStore } from '@/store/links'
 
 const LinkCard = ({ link }: { link: ILink }) => {
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(false)
+  const [loading, setLoading] = useState(false)
 
-  const { removeLink } = useLinksStore();
+  const { removeLink } = useLinksStore()
 
   const handleCopy = async (short: string) => {
     await navigator.clipboard.writeText(
-      `${process.env.NEXT_PUBLIC_CLIENT_URL}/${short}`,
-    );
+      `${process.env.NEXT_PUBLIC_CLIENT_URL}/${short}`
+    )
 
-    setCopied(true);
+    setCopied(true)
 
-    setTimeout(() => setCopied(false), 1000);
-  };
+    setTimeout(() => setCopied(false), 1000)
+  }
+
+  const handleRemove = async (id: string) => {
+    setLoading(true)
+    await removeLink(id)
+    setLoading(false)
+  }
 
   return (
     <div
       key={link.id}
       className={cn(
-        "flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 bg-zinc-800 p-5",
+        'flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 bg-zinc-800 p-5',
+        {
+          'blur pointer-events-none': loading
+        }
       )}
     >
       <div>
         <h3
-          className={cn("text-base md:text-xl font-semibold cursor-pointer")}
+          className={cn('text-xl font-semibold cursor-pointer')}
           onClick={() => handleCopy(link.short)}
         >
           {process.env.NEXT_PUBLIC_CLIENT_URL}/{link.short}
         </h3>
-        <p className={cn("text-base")}>Перенаправляет на {link.longUrl}</p>
+        <p className={cn('sm:flex gap-1 text-base')}>
+          Перенаправляет на
+          <span
+            className={cn(
+              'block overflow-hidden text-ellipsis whitespace-nowrap w-60'
+            )}
+          >
+            {link.longUrl}
+          </span>
+        </p>
       </div>
-      <div className={cn("flex gap-2")}>
+      <div className={cn('flex gap-2')}>
         <button
-          className={cn("flex bg-zinc-700 p-2")}
+          className={cn('flex bg-zinc-700 p-2')}
           onClick={() => handleCopy(link.short)}
         >
           {!copied ? (
-            <TbCopy className={cn("w-6 h-6")} />
+            <TbCopy className={cn('w-6 h-6')} />
           ) : (
-            <TbCheck className={cn("w-6 h-6")} />
+            <TbCheck className={cn('w-6 h-6')} />
           )}
         </button>
         <button
-          className={cn("flex bg-zinc-700 p-2")}
-          onClick={() => removeLink(link.id)}
+          className={cn('flex bg-zinc-700 p-2')}
+          onClick={() => handleRemove(link.id)}
         >
-          <TbTrash className={cn("w-6 h-6")} />
+          <TbTrash className={cn('w-6 h-6')} />
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LinkCard;
+export default LinkCard
