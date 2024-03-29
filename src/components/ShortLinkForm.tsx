@@ -28,7 +28,7 @@ const ShortLinkForm = () => {
       url: "https://",
     },
     resolver: zodResolver(schema),
-    mode: "all",
+    mode: "onChange",
   });
 
   const onSubmit = async (data: Schema) => {
