@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { useLinksStore } from "@/store/links";
 import { useForm } from "react-hook-form";

@@ -13,7 +13,9 @@ const LinkCard = ({ link }: { link: ILink }) => {
     await navigator.clipboard.writeText(
       `${process.env.NEXT_PUBLIC_CLIENT_URL}/${short}`,
     );
+
     setCopied(true);
+
     setTimeout(() => setCopied(false), 1000);
   };
 
@@ -31,7 +33,7 @@ const LinkCard = ({ link }: { link: ILink }) => {
         >
           {process.env.NEXT_PUBLIC_CLIENT_URL}/{link.short}
         </h3>
-        <p className={cn("text-sm")}>Перенаправляет на {link.longUrl}</p>
+        <p className={cn("text-base")}>Перенаправляет на {link.longUrl}</p>
       </div>
       <div className={cn("flex gap-2")}>
         <button

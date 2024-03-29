@@ -19,9 +19,7 @@ export const metadata: Metadata = {
 const Short = async ({ params }: { params: { short: string } }) => {
   const link = await getLinkByShort(params.short);
 
-  if (!link) {
-    notFound();
-  }
+  if (!link) notFound();
 
   redirect(link.longUrl);
 };
