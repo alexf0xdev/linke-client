@@ -1,3 +1,3 @@
-# Linke Website (Client)
+# Linke Website (client)
 
 Link - (temp none)
