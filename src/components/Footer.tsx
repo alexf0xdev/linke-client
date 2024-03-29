@@ -8,7 +8,7 @@ const Footer = () => {
         Этот проект{" "}
         <Link
           className={cn("text-zinc-600")}
-          href="https://github.com/alexf0xdev"
+          href="https://github.com/alexf0xdev/linke-website-client"
           target="_blank"
         >
           open source
