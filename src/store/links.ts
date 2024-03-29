@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { ILink } from "@/interfaces/link";
-import { createJSONStorage, persist } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 
 interface ILinksStore {
   links: ILink[];
@@ -33,9 +33,6 @@ export const useLinksStore = create<ILinksStore>()(
         }));
       },
     }),
-    {
-      name: "links-storage",
-      storage: createJSONStorage(() => sessionStorage),
-    },
+    { name: "links-storage" },
   ),
 );
