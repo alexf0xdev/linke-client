@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 const schema = z.object({
   url: z
     .string({ required_error: "Укажите ссылку" })
-    .min(1, "Укажите ссылку")
+    .min(1, { message: "Укажите ссылку" })
     .url({ message: "Неверная ссылка" }),
 });
 
