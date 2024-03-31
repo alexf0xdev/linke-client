@@ -3,8 +3,11 @@ import { cn } from '@/lib/utils'
 import { TbCheck, TbCopy, TbLoader2, TbTrash } from 'react-icons/tb'
 import { ILink } from '@/interfaces/link'
 import { useLinksStore } from '@/store/links'
+import { useTranslations } from 'next-intl'
 
 const LinkCard = ({ link }: { link: ILink }) => {
+  const t = useTranslations('home.links.item')
+
   const [copied, setCopied] = useState(false)
   const [removeLoading, setRemoveLoading] = useState(false)
 
@@ -43,14 +46,18 @@ const LinkCard = ({ link }: { link: ILink }) => {
           {process.env.NEXT_PUBLIC_CLIENT_URL}/{link.short}
         </h3>
         <p className={cn('sm:flex gap-1 text-base')}>
-          Перенаправляет на
-          <span
-            className={cn(
-              'block overflow-hidden text-ellipsis whitespace-nowrap w-60'
-            )}
-          >
-            {link.longUrl}
-          </span>
+          {t.rich('redirectTo', {
+            span: chunks => (
+              <span
+                className={cn(
+                  'block overflow-hidden text-ellipsis whitespace-nowrap w-60'
+                )}
+              >
+                {chunks}
+              </span>
+            ),
+            longUrl: link.longUrl
+          })}
         </p>
       </div>
       <div className={cn('flex gap-2')}>

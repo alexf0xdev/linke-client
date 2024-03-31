@@ -5,8 +5,8 @@ import Footer from '@/components/Footer'
 
 const Home = () => {
   return (
-    <div className={cn('flex flex-col min-h-screen px-2')}>
-      <main className={cn('flex-1 mx-auto w-full max-w-2xl')}>
+    <div className={cn('flex flex-col mx-auto px-2 min-h-screen max-w-2xl')}>
+      <main className={cn('flex-1')}>
         <Hero />
         <Links />
       </main>

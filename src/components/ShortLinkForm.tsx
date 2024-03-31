@@ -5,17 +5,20 @@ import { useLinksStore } from '@/store/links'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-
-const schema = z.object({
-  url: z
-    .string({ required_error: 'Укажите ссылку' })
-    .min(1, { message: 'Укажите ссылку' })
-    .url({ message: 'Неверная ссылка' })
-})
-
-type Schema = z.infer<typeof schema>
+import { useTranslations } from 'next-intl'
 
 const ShortLinkForm = () => {
+  const t = useTranslations('home.shortLinkForm')
+
+  const schema = z.object({
+    url: z
+      .string({ required_error: t('requiredError') })
+      .min(1, { message: t('requiredError') })
+      .url({ message: t('invalidLink') })
+  })
+
+  type Schema = z.infer<typeof schema>
+
   const { addLink } = useLinksStore()
 
   const {
@@ -41,7 +44,7 @@ const ShortLinkForm = () => {
           className={cn(
             'block bg-zinc-800 placeholder-zinc-500 px-5 py-3 w-full focus:outline-none'
           )}
-          placeholder='Введите ссылку...'
+          placeholder={t('inputPlaceholder')}
           {...register('url')}
         />
         <button
@@ -50,7 +53,7 @@ const ShortLinkForm = () => {
           )}
           disabled={isSubmitting}
         >
-          {!isSubmitting ? 'Сократить' : 'Сокращаем...'}
+          {!isSubmitting ? t('short') : t('shorting')}
         </button>
       </div>
       {errors.url && (

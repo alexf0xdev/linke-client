@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "title": "Linke - Simple link shortener",
+    "description": "Shorten the link if it's too long"
+  },
+  "home" : {
+    "hero": {
+      "title": "Link shortener",
+      "description": "Shorten the link if it's too long"
+    },
+    "shortLinkForm": {
+      "inputPlaceholder": "Enter link...",
+      "requiredError": "Specify the link",
+      "invalidLink": "Invalid link",
+      "short": "Short",
+      "shorting": "Shorting..."
+    },
+    "links": {
+      "title": "Your links",
+      "item": {
+        "redirectTo": "Redirect to <span>{longUrl}</span>"
+      }
+    },
+    "footer": {
+      "openSource": "This project <link>open source</link>",
+      "developer": "Developed by <link>AlexF0x</link>"
+    }
+  },
+  "short": {
+    "metadata": {
+      "title": "Redirecting..."
+    }
+  },
+  "error": {
+    "title": "Technical problems",
+    "description": "There was a technical problem..."
+  },
+  "notFound": {
+    "title": "Page not found ;(",
+    "description": "Page not found or removed..."
+  },
+  "notFoundShort": {
+    "title": "Link not found ;(",
+    "description": "Short link not found or removed..."
+  }
+}

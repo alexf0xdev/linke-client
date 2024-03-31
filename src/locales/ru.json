@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "title": "Linke - Простой сокращатель ссылок",
+    "description": "Сократи ссылку, если она слишком большая"
+  },
+  "home" : {
+    "hero": {
+      "title": "Сокращатель ссылок",
+      "description": "Сократи ссылку, если она слишком большая"
+    },
+    "shortLinkForm": {
+      "inputPlaceholder": "Введите ссылку...",
+      "requiredError": "Укажите ссылку",
+      "invalidLink": "Неверная ссылка",
+      "short": "Сократить",
+      "shorting": "Сокращаем..."
+    },
+    "links": {
+      "title": "Ваши ссылки",
+      "item": {
+        "redirectTo": "Перенаправляет на <span>{longUrl}</span>"
+      }
+    },
+    "footer": {
+      "openSource": "Этот проект <link>open source</link>",
+      "developer": "Разработано <link>AlexF0x</link>"
+    }
+  },
+  "short": {
+    "metadata": {
+      "title": "Перенаправляем..."
+    }
+  },
+  "error": {
+    "title": "Технические неполадки",
+    "description": "Произошли технические неполадки..."
+  },
+  "notFound": {
+    "title": "Страница не найдена ;(",
+    "description": "Страница не найдена или удалена..."
+  },
+  "notFoundShort": {
+    "title": "Ссылка не найдена ;(",
+    "description": "Короткая ссылка не найдена или удалена..."
+  }
+}
