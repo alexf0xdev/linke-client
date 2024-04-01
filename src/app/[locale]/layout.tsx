@@ -3,34 +3,40 @@ import { Inter } from 'next/font/google'
 import { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 
-import './globals.css'
 import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const generateMetadata = async ({
-  params: { locale }
+  params: { locale: currentLocale }
 }: {
   params: { locale: string }
 }): Promise<Metadata> => {
-  const t = await getTranslations({ locale, namespace: 'metadata' })
+  const t = await getTranslations({ currentLocale, namespace: 'metadata' })
 
   return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_CLIENT_URL!),
     title: {
       default: t('title'),
       template: '%s - Linke'
     },
     description: t('description'),
     openGraph: {
-      url: process.env.NEXT_PUBLIC_CLIENT_URL,
       type: 'website',
       siteName: 'Linke',
-      locale
+      url: process.env.NEXT_PUBLIC_CLIENT_URL,
+      locale: currentLocale
     },
     twitter: {
       card: 'summary_large_image',
       site: '@linke'
+    },
+    alternates: {
+      languages: {
+        en: '/en',
+        ru: '/ru'
+      }
     }
   }
 }
