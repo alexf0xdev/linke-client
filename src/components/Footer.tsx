@@ -16,7 +16,7 @@ const Footer = () => {
           {t.rich('openSource', {
             link: chunks => (
               <Link
-                className={cn('text-zinc-500')}
+                className={cn('text-zinc-500 hover:text-zinc-600')}
                 href='https://github.com/alexf0xdev/linke-website-client'
                 target='_blank'
               >
@@ -29,7 +29,7 @@ const Footer = () => {
           {t.rich('developer', {
             link: chunks => (
               <Link
-                className={cn('text-orange-500')}
+                className={cn('text-orange-500 hover:text-orange-600')}
                 href='https://github.com/alexf0xdev'
                 target='_blank'
               >

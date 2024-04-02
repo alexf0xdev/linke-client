@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 
 import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
+import { locales } from '@/navigation'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -33,10 +34,10 @@ export const generateMetadata = async ({
       site: '@linke'
     },
     alternates: {
-      languages: {
-        en: '/en',
-        ru: '/ru'
-      }
+      languages: locales.reduce(
+        (acc, value) => ({ ...acc, [value]: `/${value}` }),
+        {}
+      )
     }
   }
 }

@@ -62,7 +62,7 @@ const LinkCard = ({ link }: { link: ILink }) => {
       </div>
       <div className={cn('flex gap-2')}>
         <button
-          className={cn('flex bg-zinc-700 p-2')}
+          className={cn('flex bg-zinc-700 p-2 hover:bg-zinc-600')}
           onClick={() => handleCopy(link.short)}
         >
           {!copied ? (
@@ -72,7 +72,7 @@ const LinkCard = ({ link }: { link: ILink }) => {
           )}
         </button>
         <button
-          className={cn('flex bg-zinc-700 p-2', {
+          className={cn('flex bg-zinc-700 p-2 hover:bg-zinc-600', {
             'pointer-events-none': removeLoading
           })}
           onClick={() => handleRemove(link.id)}

@@ -49,7 +49,7 @@ const ShortLinkForm = () => {
         />
         <button
           className={cn(
-            'flex items-center justify-center bg-orange-600 px-5 py-3 w-full sm:w-auto disabled:bg-zinc-700'
+            'flex items-center justify-center bg-orange-600 px-5 py-3 w-full sm:w-auto hover:bg-orange-700 disabled:bg-zinc-700'
           )}
           disabled={isSubmitting}
         >

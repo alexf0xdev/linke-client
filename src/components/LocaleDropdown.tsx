@@ -47,18 +47,22 @@ const LocaleDropdown = () => {
         />
       </button>
       {open && (
-        <div className={cn('absolute bottom-0 mb-10 bg-zinc-700 w-full')}>
-          {locales
-            .filter(locale => locale !== currentLocale)
-            .map((locale, idx) => (
-              <button
-                key={idx}
-                className={cn('flex text-base uppercase p-2 w-full')}
-                onClick={() => handleChangeLocale(locale)}
-              >
-                {locale}
-              </button>
-            ))}
+        <div
+          className={cn(
+            'absolute bottom-0 flex flex-col bg-zinc-800 mb-11 shadow-md w-[66px]'
+          )}
+        >
+          {locales.map((locale, idx) => (
+            <button
+              key={idx}
+              className={cn('flex text-base uppercase p-2 hover:bg-zinc-700', {
+                'bg-orange-600 pointer-events-none': locale === currentLocale
+              })}
+              onClick={() => handleChangeLocale(locale)}
+            >
+              {locale}
+            </button>
+          ))}
         </div>
       )}
     </div>
