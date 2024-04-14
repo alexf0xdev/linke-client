@@ -40,17 +40,19 @@ const LinkCard = ({ link }: { link: ILink }) => {
     >
       <div>
         <h3
-          className={cn('text-xl font-semibold cursor-pointer')}
+          className={cn(
+            'text-xl font-semibold cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap'
+          )}
           onClick={() => handleCopy(link.short)}
         >
           {process.env.NEXT_PUBLIC_CLIENT_URL}/{link.short}
         </h3>
-        <p className={cn('sm:flex gap-1 text-base')}>
+        <p className={cn('sm:inline-flex gap-2 text-base')}>
           {t.rich('redirectTo', {
             span: chunks => (
               <span
                 className={cn(
-                  'block overflow-hidden text-ellipsis whitespace-nowrap w-60'
+                  'block overflow-hidden text-ellipsis whitespace-nowrap max-w-xs'
                 )}
               >
                 {chunks}
