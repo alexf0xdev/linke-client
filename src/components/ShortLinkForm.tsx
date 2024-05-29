@@ -45,6 +45,7 @@ const ShortLinkForm = () => {
             'block bg-zinc-800 placeholder-zinc-500 px-5 py-3 rounded-t-md sm:rounded-tr-none sm:rounded-l-md w-full focus:outline-none'
           )}
           placeholder={t('inputPlaceholder')}
+          autoFocus
           {...register('url')}
         />
         <button
