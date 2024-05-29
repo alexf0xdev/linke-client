@@ -12,6 +12,12 @@ const nextConfig = {
         port: '3001',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'api.linke.su',
+        port: '',
+        pathname: '**',
+      },
     ],
   },
 };
