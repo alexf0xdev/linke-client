@@ -35,7 +35,7 @@ const LocaleDropdown = () => {
     <div className={cn('relative z-10')} ref={ref}>
       <button
         className={cn(
-          'flex items-center text-base uppercase gap-2 bg-zinc-800 p-2'
+          'flex items-center text-base uppercase gap-2 bg-zinc-800 p-2 rounded-md'
         )}
         onClick={() => setOpen(prev => !prev)}
       >
@@ -49,20 +49,22 @@ const LocaleDropdown = () => {
       {open && (
         <div
           className={cn(
-            'absolute bottom-0 flex flex-col bg-zinc-800 mb-11 shadow-md w-[66px]'
+            'absolute bottom-0 flex gap-1 flex-col bg-zinc-800 mb-11 p-1 shadow-md w-[66px] rounded-md'
           )}
         >
-          {locales.map((locale, idx) => (
-            <button
-              key={idx}
-              className={cn('flex text-base uppercase p-2 hover:bg-zinc-700', {
-                'bg-orange-600 pointer-events-none': locale === currentLocale
-              })}
-              onClick={() => handleChangeLocale(locale)}
-            >
-              {locale}
-            </button>
-          ))}
+          {locales
+            .filter(locale => locale !== currentLocale)
+            .map((locale, idx) => (
+              <button
+                key={idx}
+                className={cn(
+                  'flex text-base uppercase p-1.5 rounded hover:bg-zinc-700'
+                )}
+                onClick={() => handleChangeLocale(locale)}
+              >
+                {locale}
+              </button>
+            ))}
         </div>
       )}
     </div>

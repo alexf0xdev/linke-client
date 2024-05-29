@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
-import { TbCheck, TbCopy, TbLoader2, TbTrash } from 'react-icons/tb'
+import { TbCheck, TbCopy, TbLoader2, TbQrcode, TbTrash } from 'react-icons/tb'
 import { ILink } from '@/interfaces/link'
 import { useLinksStore } from '@/store/links'
 import { useTranslations } from 'next-intl'
+import QrCodeModal from '@/components/QrCodeModal'
 
 const LinkCard = ({ link }: { link: ILink }) => {
   const t = useTranslations('home.links.item')
 
   const [copied, setCopied] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
   const [removeLoading, setRemoveLoading] = useState(false)
 
   const { removeLink } = useLinksStore()
@@ -35,7 +37,7 @@ const LinkCard = ({ link }: { link: ILink }) => {
     <div
       key={link.id}
       className={cn(
-        'flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 bg-zinc-800 p-5'
+        'flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 bg-zinc-800 p-5 rounded-md'
       )}
     >
       <div>
@@ -47,7 +49,7 @@ const LinkCard = ({ link }: { link: ILink }) => {
         >
           {process.env.NEXT_PUBLIC_CLIENT_URL}/{link.short}
         </h3>
-        <p className={cn('sm:inline-flex gap-2 text-base')}>
+        <p className={cn('sm:inline-flex gap-1 text-base')}>
           {t.rich('redirectTo', {
             span: chunks => (
               <span
@@ -64,7 +66,7 @@ const LinkCard = ({ link }: { link: ILink }) => {
       </div>
       <div className={cn('flex gap-2')}>
         <button
-          className={cn('flex bg-zinc-700 p-2 hover:bg-zinc-600')}
+          className={cn('flex bg-zinc-700 p-2 rounded hover:bg-zinc-600')}
           onClick={() => handleCopy(link.short)}
         >
           {!copied ? (
@@ -74,7 +76,15 @@ const LinkCard = ({ link }: { link: ILink }) => {
           )}
         </button>
         <button
-          className={cn('flex bg-zinc-700 p-2 hover:bg-zinc-600', {
+          className={cn('flex bg-zinc-700 p-2 rounded hover:bg-zinc-600', {
+            'pointer-events-none': removeLoading
+          })}
+          onClick={() => setOpenModal(true)}
+        >
+          <TbQrcode className={cn('w-6 h-6')} />
+        </button>
+        <button
+          className={cn('flex bg-zinc-700 p-2 rounded hover:bg-zinc-600', {
             'pointer-events-none': removeLoading
           })}
           onClick={() => handleRemove(link.id)}
@@ -86,6 +96,11 @@ const LinkCard = ({ link }: { link: ILink }) => {
           )}
         </button>
       </div>
+      <QrCodeModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        link={link}
+      />
     </div>
   )
 }

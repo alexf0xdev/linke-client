@@ -42,14 +42,14 @@ const ShortLinkForm = () => {
       <div className={cn('sm:flex w-full')}>
         <input
           className={cn(
-            'block bg-zinc-800 placeholder-zinc-500 px-5 py-3 w-full focus:outline-none'
+            'block bg-zinc-800 placeholder-zinc-500 px-5 py-3 rounded-t-md sm:rounded-tr-none sm:rounded-l-md w-full focus:outline-none'
           )}
           placeholder={t('inputPlaceholder')}
           {...register('url')}
         />
         <button
           className={cn(
-            'flex items-center justify-center bg-orange-600 px-5 py-3 w-full sm:w-auto hover:bg-orange-700 disabled:bg-zinc-700'
+            'flex items-center justify-center bg-orange-600 px-5 py-3 rounded-b-md sm:rounded-bl-none sm:rounded-r-md w-full sm:w-auto hover:bg-orange-700 disabled:bg-zinc-700'
           )}
           disabled={isSubmitting}
         >
@@ -57,7 +57,7 @@ const ShortLinkForm = () => {
         </button>
       </div>
       {errors.url && (
-        <p className={cn('text-left text-red-500 mt-1')}>
+        <p className={cn('text-left text-red-500 text-sm mt-1')}>
           {errors.url.message}
         </p>
       )}
